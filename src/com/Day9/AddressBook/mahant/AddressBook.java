@@ -1,12 +1,22 @@
 package com.Day9.AddressBook.mahant;
+import java.util.Scanner;
 
 public class AddressBook {
 
 	public static void main(String[] args) {
-		
-		System.out.println("Welcome To Address Book System Program");
-		
-
-	}
-
+        System.out.println("WelCome To AddressBook Program");
+        Scanner sc = new Scanner (System.in);
+        System.out.println("Enter the first name");
+        String  fName = sc.next();
+        System.out.println("Enter the last Name");
+        String lName = sc.next();
+        System.out.println("Enter the city");
+        String City = sc.next();
+        System.out.println("Enter the Address");
+        String Address = sc.next();
+        System.out.println("Enter the number");
+        int Number = sc.nextInt();
+        System.out.println("Enter the mail");
+        String Email = sc.next();
+    }
 }
