@@ -1,41 +1,14 @@
 package com.Day9.AddressBook.mahant;
+
+
+import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Set;
 
 public class AddressBook {
-	public String firstName;
-	public String lastName;
-	public String phoneNumber;
-	public String address;
-	public int pincode;
-	public String email;
-
-	public AddressBook(String firstName, String lastName,String phoneNumber, String address
-			, int pincode, String email) {
-
-		this.firstName=firstName;
-		this.lastName=lastName;
-		this.phoneNumber=phoneNumber;
-		this.address=address;
-		this.pincode=pincode;
-		this.email=email;
-	}
-	public void newAddressBookDataEnter() {
-		System.out.println(firstName+" "+lastName+" "+phoneNumber+
-				" "+address+" "+pincode+"  "+email);
-
-	}
-	public void changePhoneNumber(int change) {
-		Scanner sc=new Scanner(System.in);
-		if (change==1) {
-			System.out.println("Enter The New Number");
-			phoneNumber=sc.next();
-			System.out.println(firstName+" "+lastName+" "+phoneNumber+
-					" "+address+" "+pincode+"  "+email);
-		}
-	}
-
-	public static void main(String[] args) {
-		Scanner sc=new Scanner(System.in);
+	static HashMap<Integer,String> map = new HashMap<Integer, String>();
+	static Scanner sc=new Scanner(System.in);
+	public static String newAddressBookDataEnter() {
 		System.out.println("First Name Enter");
 		String firstName=sc.next();
 		System.out.println("Last Name Enter");
@@ -45,15 +18,39 @@ public class AddressBook {
 		System.out.println(" Address Enter");
 		String address=sc.next();
 		System.out.println(" PinCode Enter");
-		int pincode=sc.nextInt();
+		String pincode=sc.next();
 		System.out.println(" Email Enter");
 		String email=sc.next();
-		AddressBook obj=new AddressBook(firstName,lastName,phoneNumber,address,pincode,email);
-		obj.newAddressBookDataEnter();
-		System.out.println("If Change The Phone Number Enter 1");
-		int value=sc.nextInt();
-		obj.changePhoneNumber(value);
+
+		System.out.println(firstName+" "+lastName+" "+phoneNumber+
+				" "+address+" "+pincode+"  "+email);
+		return firstName+" "+lastName+" "+phoneNumber+
+				" "+address+" "+pincode+"  "+email;
+
 	}
-
+	public static void storeData() {
+		System.out.println("If address book add more Then Enter The  1");
+		System.out.println("If address book add Nothing Then Enter The  0");
+		System.out.println("If address book Show Then Enter The  2");
+		int condition=sc.nextInt();
+		switch(condition) {
+		
+		case(0): System.out.println("Your address Book Is  Save & Closed");
+		         break;
+		case(1):  System.out.println("Enter The Unique Value of Person");
+		          int unique=sc.nextInt();
+		          map.put(unique, newAddressBookDataEnter());
+		          System.out.println(map.get(unique));
+		          storeData();
+		          break;
+		case(2): Set<Integer> keys = map.keySet();
+		         for (Object key : keys)
+			     System.out.println("Keys :  "+key+" value:  "+map.get(key));      
+		         break;
+		default: System.out.println("Enter Correct Input");
+		}
+	}
+	public static void main(String[] args) {		
+		AddressBook.storeData();
+	}
 }
-
