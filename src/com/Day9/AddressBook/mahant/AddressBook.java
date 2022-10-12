@@ -1,41 +1,49 @@
 package com.Day9.AddressBook.mahant;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class AddressBook {
-	String Name ;
-    String Address;
-    String City;
-    String Email;
-   int Number;
-    public void AddNew(){
-        Scanner sc = new Scanner (System.in);
-        System.out.println("Enter the Name");
-        Name = sc.nextLine();
-        System.out.println("Enter the address");
-        Address = sc.nextLine();
-        System.out.println("Enter the City");
-        City = sc.nextLine();
-        System.out.println("Enter the mail");
-        Email = sc.nextLine();
-        System.out.println("Enter the Number");
-        Number = sc.nextInt();
-    }
-    void deletePerson(String name) {
-        if (Name.equals(name)) {
-            Name = null;
-            Number = 0;
-            Address = null;
-            City = null;
-            Email = null;
-            System.out.println("The Data is Deleted");
-        }else{
-            System.out.println("Data Is Not Deleted ");
-        }
-    }
+	
+	static Scanner sc=new Scanner(System.in);
+	static ArrayList<String> store=new ArrayList<String>();
+	public static String newAddressBookDataEnter() {
+		System.out.println("First Name Enter");
+		String firstName=sc.next();
+		System.out.println("Last Name Enter");
+		String lastName=sc.next();
+		System.out.println("PhoneNumber Enter");
+		String phoneNumber=sc.next();
+		System.out.println(" Address Enter");
+		String address=sc.next();
+		System.out.println(" PinCode Enter");
+		String pincode=sc.next();
+		System.out.println(" Email Enter");
+		String email=sc.next();
+		
+		System.out.println(firstName+" "+lastName+" "+phoneNumber+
+				" "+address+" "+pincode+"  "+email);
+		return firstName+" "+lastName+" "+phoneNumber+
+				" "+address+" "+pincode+"  "+email;
 
-    public static void main(String[] args) {
-       AddressBook ads = new AddressBook();
-       ads.AddNew();
-       ads.deletePerson(ads.Name);
-    }
+	}
+	public static void storeData() {
+		System.out.println("If address book add more Then Enter The  1");
+		System.out.println("If address book add Nothing Then Enter The  0");
+		System.out.println("If address book Show Then Enter The  2");
+		int condition=sc.nextInt();
+		switch(condition) {
+		case(0): System.out.println("Your address Book Is  Save & Closed");
+		break;
+		case(1):  store.add(newAddressBookDataEnter());
+		          storeData();
+		          break;
+		case(2):      System.out.println(store.toString());   
+		          break;
+	    default: System.out.println("Enter Correct Input");
+		}
+	}
+	
+	public static void main(String[] args) {		
+		AddressBook.storeData();
+	}
 }
